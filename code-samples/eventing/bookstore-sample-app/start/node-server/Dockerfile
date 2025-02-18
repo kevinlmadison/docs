@@ -16,5 +16,10 @@ COPY . .
 # Expose the port on which the application will run
 EXPOSE 8000
 
+# Override any inherited entrypoint
+ENTRYPOINT [ "node" ]
+
 # Specify the command to start the application
-CMD [ "node", "index.js" ]
+CMD [ "index.js" ]
+# # Specify the command to start the application
+# CMD [ "node", "index.js" ]

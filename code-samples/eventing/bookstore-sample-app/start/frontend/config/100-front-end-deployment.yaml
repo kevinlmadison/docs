@@ -30,4 +30,28 @@ spec:
     - port: 3000
   selector:
     app: bookstore-frontend
-  type: LoadBalancer
+  type: ClusterIP
+
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: bookstore-frontend-virtual-service
+spec:
+  gateways:
+    - istio-system/ahq-gateway
+    - mesh
+  hosts:
+    - bsfe.dev.analyticshq.com
+  http:
+    - headers:
+        request:
+          set:
+            x-forwarded-port: "443"
+            x-forwarded-proto: https
+      name: keycloak
+      route:
+        - destination:
+            host: bookstore-frontend-svc.default.svc.dev.ahq
+            port:
+              number: 3000

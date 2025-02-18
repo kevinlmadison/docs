@@ -1,0 +1,9 @@
+specVersion: 0.35.0
+name: sentiment-analysis-app
+runtime: python
+registry: docker.io/kevinlmadison
+image: docker.io/kevinlmadison/sentiment-analysis-app:latest
+created: 2025-02-14T14:36:07.615011772-05:00
+build:
+  builder: s2i
+  pvcSize: 256Mi
